@@ -7,5 +7,23 @@ const genresSchema = new mongoose.Schema({
     }
 })
 
+const customersSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true,
+    },
+    isGold: {
+        type: Boolean,
+        default: false
+    }
+})
 
-module.exports = mongoose.model("Genre", genresSchema)
+
+module.exports = {
+    Genre: mongoose.model("Genre", genresSchema),
+    Customer: mongoose.model("Customer", customersSchema)
+}
