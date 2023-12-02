@@ -26,5 +26,6 @@ const customersSchema = new mongoose.Schema({
 module.exports = {
     Genre: mongoose.model("Genre", genresSchema),
     Customer: mongoose.model("Customer", customersSchema),
-    genresSchema
+    genresSchema,
+    customerSchema
 }

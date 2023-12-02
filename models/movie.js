@@ -43,5 +43,6 @@ function check_if_ressource(id, res) {
 
 module.exports = {
     Movie,
-    check_if_ressource
+    check_if_ressource, 
+    movieSchema
 }

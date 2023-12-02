@@ -27,18 +27,12 @@ function  check_bad_request_movies(req, res, next){
         const update_fields = Object.keys(req.body)
         const customerFields = ["title", "genre", "numberInStock", "dailyRentalRate"]
         update_fields.forEach( field => {
-            console.log(customerFields.includes(field) )
+            
             if(!customerFields.includes(field)){
                 return res.status(400).send("you made a bad request, the movie should have a title, a genre, a numberInStock and/or a dailyRentalRate property")
                 
                 
-            }
-            if(field == "genre" && ((typeof(req.body[field]) != Object ) || (!req.body[field].hasOwnProperty('name') )  ) ){
-                return res.status(400).send("you made a bad request, the genre property is an object with a name property")
-                 
-            } 
-            
-           
+            }  
         }) 
     } 
     next()
