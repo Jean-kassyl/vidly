@@ -23,6 +23,7 @@
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
     "express-session": "^1.17.3",
+    "fawn": "^2.1.5",
     "formidable": "^3.5.0",
     "hbs": "^4.2.0",
     "helmet": "^7.0.0",

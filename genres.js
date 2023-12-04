@@ -41,4 +41,4 @@ const  genres = [
    }
 ]
 
-module.exports.genres = genres
+console.log(Array.isArray(genres))
