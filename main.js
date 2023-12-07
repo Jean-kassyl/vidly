@@ -2,7 +2,7 @@ const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 
 const express = require('express')
-const {check_bad_request_genres, check_bad_request_customers, check_bad_request_movies} = require('./middlewares/check.js')
+const check_valid_id = require('./middlewares/check.js')
 const genres = require('./routes/genres_routes')
 const customers = require('./routes/customers_routes')
 const movies = require('./routes/movies_routes')
@@ -16,9 +16,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/vidlyDB")
 const app = express()
 app.use(express.json())
 
-app.use(check_bad_request_movies)
-app.use(check_bad_request_genres)
-app.use(check_bad_request_customers)
+app.use(check_valid_id)
+
 
 
 

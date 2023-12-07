@@ -1,63 +1,12 @@
+const mongoose = require('mongoose')
 
-function  check_bad_request_genres(req, res, next){
-    
-    if((req.url === "/api/genres") &&(Object.keys(req.body).length > 0) && !req.body.hasOwnProperty("genre")){
-        return res.status(400).json({error: "Bad request, You must provide a genre"})
+
+function check_valid_id(req, res, next) {
+    const id = req.params.id 
+    if(id &&  !mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).send("bad request: invalid id")
     }
     next()
 }
 
-function  check_bad_request_customers(req, res, next){
-    if (req.url === "/api/customers"){
-        const update_fields = Object.keys(req.body)
-        const customerFields = ["name", "phone", "isGold"]
-        update_fields.forEach( field => {
-            if(!customerFields.includes(field)){
-                res.status(400).send("you made a bad request, the costumer should have a name, phone, or a isGold property")
-                return
-            }
-        })
-    }
-   
-    next()
-}
-
-function  check_bad_request_movies(req, res, next){
-    if (req.url === "/api/movies"){
-        const update_fields = Object.keys(req.body)
-        const customerFields = ["title", "genre", "numberInStock", "dailyRentalRate"]
-        update_fields.forEach( field => {
-            
-            if(!customerFields.includes(field)){
-                return res.status(400).send("you made a bad request, the movie should have a title, a genre, a numberInStock and/or a dailyRentalRate property")
-                
-                
-            }  
-        }) 
-    } 
-    next()
-    
-}
-
-function  check_bad_request_rentals(req, res, next){
-    if (req.url === "/api/rentals"){
-        const update_fields = Object.keys(req.body)
-        const customerFields = ["customer", "movie"]
-        update_fields.forEach( field => {
-            
-            if(!customerFields.includes(field)){
-                return res.status(400).send("you made a bad request, the movie should have a title, a genre, a numberInStock and/or a dailyRentalRate property")   
-            }  
-
-    }) 
-    next()
-    
-}
-}
-
-module.exports = {
-    check_bad_request_genres,
-    check_bad_request_customers,
-    check_bad_request_movies,
-    check_bad_request_rentals
-}
+module.exports = check_valid_id

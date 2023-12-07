@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Genre} = require('../models/models.js')
+const {Genre} = require('../models/genre.js')
 const {Movie, check_if_ressource} = require('../models/movie.js')
 
 
