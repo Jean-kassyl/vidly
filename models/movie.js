@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Joi = require("joi")
 const {genresSchema} = require('./genre.js')
 
 
@@ -27,22 +28,18 @@ const movieSchema = new mongoose.Schema({
 
 const Movie  = mongoose.model('Movie', movieSchema)
 
-function check_if_ressource(id, res) {
-        Movie.findById({_id: id})
-            .then(movie => {
-                if(movie){
-                    return
-                } else  {
-                    res.status(404).send("the ressource you are asking doesn't exist")
-                }
-            } ).catch(e => {
-                console.log(e)
-                res.status(404).send("the ressource you are asking doesn't exist")
-            })
+
+function validateMovie(movie) {
+    const schema = {
+        title: Joi.string().min(3).required(),
+        genreId: Joi.objectId().required(),
+    }
+
+    return Joi.validate(movie, schema)
 }
 
 module.exports = {
     Movie,
-    check_if_ressource, 
+    validateMovie, 
     movieSchema
 }
