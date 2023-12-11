@@ -6,6 +6,7 @@ const check_valid_id = require('./middlewares/check.js')
 const genres = require('./routes/genres_routes')
 const customers = require('./routes/customers_routes')
 const movies = require('./routes/movies_routes')
+const users = require('./routes/user_routes')
 const mongoose = require("mongoose")
 
 
@@ -24,7 +25,7 @@ app.use(check_valid_id)
 app.use('/api/genres', genres)
 app.use('/api/customers', customers)
 app.use('/api/movies', movies)
-
+app.use('/api/users', users)
 const port = process.env.PORT || 3003
 
 app.listen(port, () => console.log("listening"))
